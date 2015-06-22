@@ -4,6 +4,9 @@ var gulp = require('gulp'),
   less = require('gulp-less'),
   rename = require('gulp-rename'),
   mincss = require('gulp-minify-css'),
+  mainBowerFiles = require('main-bower-files'),
+  wiredep = require('wiredep').stream,
+  googleCdn = require('gulp-google-cdn'),
   browserSync = require('browser-sync');
 
 
@@ -21,7 +24,9 @@ gulp.task('less', function() {
 });
 
 gulp.task('templates', function() {
-  return gulp.src('source/templates/**')
+  return gulp.src('source/templates/**/*.html')
+    .pipe(wiredep({optional: 'configuration',goes: 'here'}))
+    .pipe(googleCdn(require('./bower.json')))
     .pipe(gulp.dest('build'));
 });
 
