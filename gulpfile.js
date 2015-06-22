@@ -1,33 +1,51 @@
 var gulp = require('gulp'),
-  less = require('gulp-less')
+  merge = require('gulp-merge'),
+  autoprefixer = require('gulp-autoprefixer'),
+  less = require('gulp-less'),
+  rename = require('gulp-rename'),
+  mincss = require('gulp-minify-css'),
   browserSync = require('browser-sync');
 
 
+
 gulp.task('less', function() {
-  gulp.src('app/less/*.less')
+  return gulp.src('source/style/*.less')
     .pipe(less())
+    .pipe(autoprefixer('last 2 versions'))
     .on('error', function(e){
       console.log(e);
     })
-    .pipe(gulp.dest('app/css'));
+    .pipe(rename({suffix: '.min'}))
+    .pipe(mincss({keepBreaks: true}))
+    .pipe(gulp.dest('build/css'));
+});
+
+gulp.task('templates', function() {
+  return gulp.src('source/templates/**')
+    .pipe(gulp.dest('build'));
 });
 
 gulp.task('browser-sync', function(){
   var files = [
-    'app/**/*.html',
-    'app/**/*.css'
+    'build/**/*.html',
+    'build/**/*.css',
+    'build/**/*.js'
   ];
 
-  browserSync.init(files, {
+  return browserSync.init(files, {
     server: {
-      baseDir: './app'
+      baseDir: './build'
     }
   });
 });
 
 gulp.task('watch', function(){
-  gulp.watch('app/less/*.less', [
-    'less',
+  gulp.watch('source/style/*.less', [
+    'less'
     ]);
+
+  gulp.watch('source/templates/*', [
+    'templates'
+  ]);
 });
   
