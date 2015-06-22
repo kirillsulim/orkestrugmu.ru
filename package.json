@@ -1,9 +1,15 @@
 {
   "name": "frontend",
-  "version": "0.1",
-
-	"dependencies": {
-		"connect": "",
-		"serve-static": ""
-	}
+  "version": "0.1.0",
+  "description": "My try to use all awesome stuff to create frontend app.",
+  "repository": "https://bitbucket.org/kirillsulim/frontend",
+  "dependencies": {
+    "connect": "^3.4.0",
+    "gulp": "^3.9.0",
+    "gulp-less": "^3.0.3",
+    "serve-static": "^1.10.0"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.7.12"
+  }
 }
