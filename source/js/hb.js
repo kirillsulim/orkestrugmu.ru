@@ -1,0 +1,2 @@
+Handlebars = require('handlebars');
+

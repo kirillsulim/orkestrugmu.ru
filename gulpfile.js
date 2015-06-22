@@ -7,8 +7,24 @@ var gulp = require('gulp'),
   mainBowerFiles = require('main-bower-files'),
   wiredep = require('wiredep').stream,
   googleCdn = require('gulp-google-cdn'),
+  browserify = require('browserify'),
+  source = require('vinyl-source-stream'),
+  transform = require('vinyl-transform'),
+  glob = require('glob'),
   browserSync = require('browser-sync');
 
+ 
+gulp.task('browserify', function() {
+  glob('./source/js/*.js', {}, function(er, files){    
+    var b = browserify();
+    files.forEach(function(file){
+      b.add(file);
+    });
+    b.bundle()
+      .pipe(source('bundle.js'))
+      .pipe(gulp.dest('./build/'));
+  });  
+});
 
 
 gulp.task('less', function() {

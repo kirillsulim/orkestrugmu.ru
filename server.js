@@ -1,4 +1,4 @@
 var connect = require('connect');
 var serveStatic = require('serve-static');
 
-connect().use(serveStatic(__dirname + '/app')).listen(8000);
+connect().use(serveStatic(__dirname + '/build')).listen(8000);
