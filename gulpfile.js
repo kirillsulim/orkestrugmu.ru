@@ -11,11 +11,13 @@ var gulp = require('gulp'),
   source = require('vinyl-source-stream'),
   transform = require('vinyl-transform'),
   glob = require('glob'),
+  handlebars = require('gulp-compile-handlebars'),
+  rename = require('gulp-rename'),
   browserSync = require('browser-sync');
 
  
 gulp.task('browserify', function() {
-  glob('./source/js/*.js', {}, function(er, files){    
+  glob('./source/**/*.js', {}, function(er, files){    
     var b = browserify();
     files.forEach(function(file){
       b.add(file);
@@ -40,10 +42,30 @@ gulp.task('less', function() {
 });
 
 gulp.task('templates', function() {
-  return gulp.src('source/templates/**/*.html')
-    .pipe(wiredep({optional: 'configuration',goes: 'here'}))
-    .pipe(googleCdn(require('./bower.json')))
-    .pipe(gulp.dest('build'));
+  templatesDir = './source/templates/';
+  glob('**/*.hbs', 
+    {cwd: templatesDir}, 
+    function(er, files){
+      files.forEach(function(file){
+        try {
+          data = require(templatesDir + file.replace('.hbs', '.js'));
+        }
+        catch(e) {
+          data = {}
+        }
+        console.log(data);
+        console.log(file);
+        gulp.src(templatesDir + file, {base: templatesDir})
+          .pipe(handlebars(data, {
+            batch: [templatesDir]
+          }))
+          .pipe(rename(function(path){
+            console.log(path);
+            path.extname = '.html';
+          }))
+          .pipe(gulp.dest('build'));
+      });
+  });
 });
 
 gulp.task('browser-sync', function(){
