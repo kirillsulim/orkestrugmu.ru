@@ -1,7 +1,11 @@
 var gulp = require('gulp'),
     glob = require('glob'),
     handlebars = require('gulp-compile-handlebars'),
+    layouts = require('handlebars-layouts'),
     rename = require('gulp-rename');
+
+hb = handlebars.Handlebars;
+hb.registerHelper(layouts(hb));
 
 module.exports = function() {
   templatesDir = './source/templates/';
