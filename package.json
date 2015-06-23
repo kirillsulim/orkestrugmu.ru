@@ -10,6 +10,7 @@
     "globe": "^0.3.0",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^2.3.1",
+    "gulp-bower-files": "^0.2.7",
     "gulp-compile-handlebars": "^0.5.0",
     "gulp-google-cdn": "^2.0.0",
     "gulp-jade": "^1.0.1",

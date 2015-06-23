@@ -2,6 +2,7 @@ var gulp = require('gulp'),
     glob = require('glob'),
     handlebars = require('gulp-compile-handlebars'),
     layouts = require('handlebars-layouts'),
+    wiredep = require('wiredep').stream,
     rename = require('gulp-rename');
 
 hb = handlebars.Handlebars;
@@ -24,6 +25,20 @@ module.exports = function() {
           }))
           .pipe(rename(function(path){
             path.extname = '.html';
+          }))
+          .pipe(wiredep({
+            fileTypes: {
+              html: {
+                replace: {
+                  js: function(filePath) {
+                    return '<script src="' + 'vendor' + filePath.replace(/.*bower_components/, '') + '"></script>';
+                  },
+                  css: function(filePath) {
+                    return '<link rel="stylesheet" href="' + 'vendor/' + filePath.replace(/.*bower_components/, '') + '"/>';
+                  }
+                }
+              }
+            }
           }))
           .pipe(gulp.dest('build'));
       });

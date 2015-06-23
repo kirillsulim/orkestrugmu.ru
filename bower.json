@@ -4,9 +4,6 @@
   "authors": [
     "kirillsulim <kirillsulim@gmail.com>"
   ],
-  "moduleType": [
-    "node"
-  ],
   "license": "MIT",
   "ignore": [
     "**/.*",
@@ -16,6 +13,11 @@
     "tests"
   ],
   "dependencies": {
-    "jquery": "~2.1.4"
+    "jquery": "~2.1.4",
+    "underscore": "~1.8.3",
+    "bootstrap": "~3.3.5",
+    "fontawesome": "~4.3.0",
+    "bootstrap-css": "~3.3.4",
+    "normalize.css": "~3.0.3"
   }
 }
