@@ -5,8 +5,11 @@ var gulp = require('gulp'),
     mincss = require('gulp-minify-css');
 
 module.exports = function() {
-  return gulp.src('source/style/*.less')
+  return gulp.src('source/style/style.less')
     .pipe(less())
+    .on('error', function(e){
+      console.log(e);
+    })
     .pipe(autoprefixer('last 2 versions'))
     .on('error', function(e){
       console.log(e);

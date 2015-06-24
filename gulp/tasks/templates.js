@@ -37,7 +37,7 @@ module.exports = function() {
                     return '<script src="' + 'vendor' + filePath.replace(/.*bower_components/, '') + '"></script>';
                   },
                   css: function(filePath) {
-                    return '<link rel="stylesheet" href="' + 'vendor/' + filePath.replace(/.*bower_components/, '') + '"/>';
+                    return '<link rel="stylesheet" href="' + 'vendor' + filePath.replace(/.*bower_components/, '') + '"/>';
                   }
                 }
               }

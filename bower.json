@@ -17,7 +17,11 @@
     "underscore": "~1.8.3",
     "bootstrap": "~3.3.5",
     "fontawesome": "~4.3.0",
-    "bootstrap-css": "~3.3.4",
     "normalize.css": "~3.0.3"
+  },
+  "overrides": {
+    "bootstrap": {
+      "ignore": true
+    }
   }
 }

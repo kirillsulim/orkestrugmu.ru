@@ -1,7 +1,7 @@
 var gulp = require('gulp'),
-    gulpBowerFiles = require('gulp-bower-files');
+    bowerFiles = require('gulp-bower-files');
  
 module.exports = function(){
-    return gulpBowerFiles()
+    return bowerFiles()
       .pipe(gulp.dest("./build/vendor/"));
 };
