@@ -10,7 +10,7 @@ hb.registerHelper(layouts(hb));
 
 module.exports = function() {
   templatesDir = './source/templates/';
-  glob('**/*.hbs', {cwd: templatesDir},
+  glob('**/!(_)*.hbs', {cwd: templatesDir},
     function(er, files){
       files.forEach(function(file){
         try {
@@ -23,6 +23,9 @@ module.exports = function() {
           .pipe(handlebars(data, {
             batch: [templatesDir]
           }))
+          .on('error', function(err){
+            console.log(err);
+          })
           .pipe(rename(function(path){
             path.extname = '.html';
           }))
