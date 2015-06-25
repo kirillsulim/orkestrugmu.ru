@@ -13,16 +13,13 @@
                 <img src="{{photo_url}}" class="img-responsive padding-10" />
               </div>
             {{else}}
-              <div class="col-md-6 visible-md visible-lg">
-                <img src="{{photo_url}}" class="img-responsive padding-10" />
-              </div>
-              <div class="col-md-6">
+              <div class="col-md-6 col-md-push-6">
                 <h2>{{name}}</h2>
                 <p>{{about}}</p>
-              </div>
-              <div class="col-md-6 hidden-md hidden-lg">
+              </div>              
+              <div class="col-md-6 col-md-pull-6">
                 <img src="{{photo_url}}" class="img-responsive padding-10" />
-              </div>
+              </div>              
             {{/if_even}}
           </div>
         {{/each}}
