@@ -1,0 +1,14 @@
+{{#extend '_h5bp-layout' title='Новости'}}
+  {{#content 'main'}}
+    <div class="container">
+      <div class="row">
+        {{#each arras}}
+          <div class="col-md-12">
+            <h1>{{title}}</h1>
+            <p>{{text}}</p>
+          </div>
+        {{/each}}        
+      </div>
+    </div>
+  {{/content}}
+{{/extend}}
